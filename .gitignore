@@ -1,0 +1,15 @@
+# Neovim runtime
+*.log
+
+#Plugin install directories
+pack/
+site/pack/
+site/pack/**
+
+# Cache / state
+.cache/
+shada/
+.undo/
+
+# OS junk
+.DS_Store
