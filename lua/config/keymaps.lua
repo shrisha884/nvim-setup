@@ -22,10 +22,14 @@ keymap("n", "<leader>l", "<cmd>bnext<CR>")
 keymap("n", "<leader>h", "<cmd>bprevious<CR>")
 keymap("n", "<leader>bd", "<cmd>bdelete<CR>")
 keymap("n", "<leader><Esc>", "<cmd>nohlsearch<CR>")
-
 keymap("n", "<leader>+", "<cmd>echo 'Font size is controlled by your terminal'<CR>")
 keymap("n", "<leader>-", "<cmd>echo 'Font size is controlled by your terminal'<CR>")
-
+keymap("n", "<leader>er", function() 
+    vim.diagnostic.open_float(nil, {
+        focus = false,
+        close_events = { "CursorMoved", "InsertEnter", "FocusLost" },
+    })
+end)
 keymap("n", "<leader>m", function()
   vim.o.modifiable = not vim.o.modifiable
   print("Modifiable: " .. tostring(vim.o.modifiable))

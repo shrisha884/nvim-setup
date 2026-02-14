@@ -32,6 +32,15 @@ require("lazy").setup({
   end
 },
 
+{
+  "NeogitOrg/neogit",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "sindrets/diffview.nvim", -- optional but recommended
+  },
+  config = true,
+},
+
 
 
   {
@@ -79,9 +88,23 @@ require("lazy").setup({
 
   -- Treesitter
   {
+  {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    opts = {
+      ensure_installed = {
+        "javascript",
+        "typescript",
+        "tsx",
+        "json",
+        "html",
+        "css",
+      },
+      highlight = { enable = true },
+    },
   },
+  }
+,
 
   -- Rust LSP (BEST way)
   {
@@ -92,14 +115,65 @@ require("lazy").setup({
 
   -- Autocomplete
   {
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
       "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
+    },
+    config = function()
+      local cmp = require("cmp")
+      require("luasnip.loaders.from_vscode").lazy_load()
+
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<Tab>"] = cmp.mapping.select_next_item(),
+          ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        }),
+        sources = {
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+        },
+      })
+    end,
+  },
+}
+,
+
+  {
+  {
+    "williamboman/mason.nvim",
+    config = true,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = { "ts_ls", "eslint" },
     },
   },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      local lspconfig = require("lspconfig")
+      lspconfig.tsserver.setup({})
+      lspconfig.eslint.setup({})
+    end,
+  },
+},
+{
+  { "windwp/nvim-autopairs", config = true },
+  { "windwp/nvim-ts-autotag", config = true },
+},
+
+
 
   -- Git
   { "lewis6991/gitsigns.nvim" },
