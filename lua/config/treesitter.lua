@@ -6,7 +6,8 @@ end
 
 configs.setup({
   ensure_installed = {
-    "lua", "python", "rust", "cpp", "c", "bash", "json", "yaml"
+    "lua", "python", "rust", "cpp", "c", "bash", "json", "yaml",
+    "java", "kotlin", -- support Android development languages
   },
   highlight = { enable = true },
   indent = { enable = true },
