@@ -10,7 +10,6 @@ vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8
 vim.opt.clipboard = "unnamedplus"
-vim.opt.colorcolumn = "100"
 vim.opt.splitright = true
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"

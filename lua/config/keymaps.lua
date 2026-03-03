@@ -8,6 +8,8 @@ keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>")
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>")
 keymap("n", "<leader>w", "<cmd>w<CR>")
 keymap("n", "<leader>q", "<cmd>q<CR>")
+keymap("n", "<leader>dfo", "<cmd>DiffviewOpen")
+keymap("n", "<leader>dfc", "<cmd>DiffviewClose")
 
 keymap("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition (LSP)" })
 keymap("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration (LSP)" })
@@ -24,7 +26,7 @@ keymap("n", "<leader>bd", "<cmd>bdelete<CR>")
 keymap("n", "<leader><Esc>", "<cmd>nohlsearch<CR>")
 keymap("n", "<leader>+", "<cmd>echo 'Font size is controlled by your terminal'<CR>")
 keymap("n", "<leader>-", "<cmd>echo 'Font size is controlled by your terminal'<CR>")
-keymap("n", "<leader>er", function() 
+keymap("n", "<leader>r", function() 
     vim.diagnostic.open_float(nil, {
         focus = false,
         close_events = { "CursorMoved", "InsertEnter", "FocusLost" },

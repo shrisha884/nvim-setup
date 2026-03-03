@@ -14,15 +14,22 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 
   -- Theme
-  {
-  "ellisonleao/gruvbox.nvim",
-  priority = 1000,
+  
+--   {
+--   "ellisonleao/gruvbox.nvim",
+--   priority = 1000,
+--   config = function()
+--     require("gruvbox").setup({
+--       contrast = "hard",
+--       transparent_mode = false,
+--     })
+--     vim.cmd.colorscheme("gruvbox")
+--   end,
+-- },
+{
+  "RRethy/base16-nvim",
   config = function()
-    require("gruvbox").setup({
-      contrast = "hard",
-      transparent_mode = false,
-    })
-    vim.cmd.colorscheme("gruvbox")
+    vim.cmd("colorscheme base16-oceanicnext")
   end,
 },
 {
@@ -199,7 +206,7 @@ require("lazy").setup({
     "nvim-lualine/lualine.nvim",
     config = function()
       require("lualine").setup({
-        options = { theme = "gruvbox" }
+        options = { theme = "auto" }
       })
     end,
   },
